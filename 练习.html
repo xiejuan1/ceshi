@@ -14,8 +14,11 @@
 			.container{
 				width: 100%;
 				height: 300px;
+				position: absolute;
+				left: 0;
 			}
 			.container ul{
+				position: relative;
 				padding: 0;
 				margin: 0;
 				list-style: none;
@@ -43,21 +46,23 @@
 		</div>
 		<script>
 			var container = document.getElementById("container");
-			var lis = container.getElementsByClassName("li");
-			var sw =370;
+			var lis = container.getElementsByTagName("li");
+			var sw = lis[0].offsetWidth;
 			var left = 0;
 			var n = 0;
+			
 			container.addEventListener("touchstart",function(e){
 				e.preventDefault();
 				ex = e.changedTouches[0].pageX;
 				left = container.offsetLeft;
 			})
-			container.addEventListener("touchstart",function(e){
-				e.preventDefault();
-				ex = e.changedTouches[0].pageX;
-				left = container.offsetLeft;
+			
+			container.addEventListener("touchmove",function(e){
+				var dis = e.changedTouches[0].pageX - ex;
+				container.style.left = left + dis + "px";
 			})
-			container.addEventListener("touchend",function(e){
+			
+			container.addEventListener("touched",function(e){
 				n = Math.round(container.offsetLeft/sw);
 				container.style.left = n * sw +"px";
 			})
