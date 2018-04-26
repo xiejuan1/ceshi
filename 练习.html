@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		
+		<title></title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			.container{
+				margin: 0 auto;
+				height: 500px;
+				width:370px;
+				border: 1px solid;
+				overflow: hidden;
+				position: relative;
+			}
+			ul{
+				height: 500px;
+				position: absolute;
+					left:0;
+					top: 0;
+			}
+			
+			.container li{
+				float: left;
+				font-size: 25px;
+				width:370px;
+				border: 1px solid #32F721;
+				list-style: none;
+				height: 500px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container" id="container">
+			<ul >
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				
+			</ul>
+		</div>
+		<script>
+			var container = document.getElementById("container");
+			var lis = container.getElementsByClassName("li");
+			var sw =370;
+			var left = 0;
+			var n = 0;
+			container.addEventListener("touchstart",function(e){
+				e.preventDefault();
+				ex = e.changedTouches[0].pageX;
+				left = container.offsetLeft;
+			})
+			container.addEventListener("touchstart",function(e){
+				e.preventDefault();
+				ex = e.changedTouches[0].pageX;
+				left = container.offsetLeft;
+			})
+			container.addEventListener("touchend",function(e){
+				n = Math.round(container.offsetLeft/sw);
+				container.style.left = n * sw +"px";
+			})
+		</script>
+	</body>
+</html>
