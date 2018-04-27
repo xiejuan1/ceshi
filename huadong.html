@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			.text{
+				width: 100%;
+				height: 300px;
+				overflow: hidden;
+				background-color: #FFC0CB;
+			}
+			.text ul{
+				width: 500%;
+				height: 300px;
+				padding: 0;
+				margin: 0;
+				list-style: none;
+				transition: all 300ms;
+			}
+			.text ul li{
+				float: left;
+				width: 20%;
+				border: 1px solid;
+				box-sizing: border-box;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="text">
+			<ul class="list">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+			</ul>
+		</div>
+		
+		<script type="text/javascript" src="js/hammer.js"></script>
+		<script type="text/javascript">
+			var oDiv = document.querySelector(".text");
+			var oList = document.querySelector(".list");
+			var w = innerWidth;
+			var i=0;
+			var flog = true;
+			var hins = new Hammer(oDiv);
+			hins.on("panleft",function(e){
+				if(flog){
+					i++;
+					console.log(i);
+					flog = false;
+					oList.style.webkitTransform ="translate3d(-"+i*w+"px,0,0)";
+				}
+				
+			})
+			hins.on("panright",function(e){
+				if(flog){
+					i--;
+					console.log(i);
+					flog = false;
+					oList.style.webkitTransform ="translate3d(-"+i*w+"px,0,0)";
+				}
+				
+			})
+			oDiv.addEventListener("touchend",function(){
+				flog = true;
+			})
+			
+		</script>
+	</body>
+</html>
