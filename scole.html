@@ -26,11 +26,11 @@
 			var hins = new Hammer(box);
 			hins.get("pinch").set({enable:true});
 			var sc = 1;
-			hins.on("pinin",function(){
+			hins.on("pinchin",function(){
 				sc -= 0.03;
-				box.style.webkitTransform = "scale("+src+")";
+				box.style.webkitTransform = "scale("+sc+")";
 			})
-			hins.on("pinout",function(){
+			hins.on("pinchout",function(){
 				sc += 0.03;
 				if(sc>3){
 					sc = 3;
